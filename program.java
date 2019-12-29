@@ -1,7 +1,14 @@
-////// EXIT CODE NUMBERS //////
-//  0: Reached end of code
-// 5: Out of range option in optionMenu()
-////// If you find other error codes, please report to dominic03! //////
+/*
+ Version a2 (12/28/19)
+ Copyright 2019 dominic03
+
+
+//// EXIT CODE NUMBERS ////
+ 0: Reached end of code
+ 5: Out of range option in optionMenu()
+ 130: Exited due to SIGINT (signal 2) code (when running in IntelliJ IDEA)
+//// If you find other error codes, please report to dominic03! ////
+*/
 
 import java.util.Scanner;
 import java.util.Random;
@@ -78,7 +85,7 @@ public class program {
         text("Battle! Game (C) 2019 Dominic03. Not for retail sale. THIS IS FREE SOFTWARE!\nPress enter to continue...");
         waitForEnter();
         text("Starting game...");
-        text("Initializing variables...");
+        // old system for managing variables, i'm too lazy to update it
         String playerName;
         int playerChoice;
         int type = 0;
@@ -86,11 +93,14 @@ public class program {
         int createStat = 1;
         int playerStr;
         int playerDex;
-        text("Initializing methods...");
+        int playerSpd;
+        int playerSpl;
+        int playerMag;
         Random randomGenerator = new Random();
         Scanner userInput = new Scanner(System.in);
-        text("Done.");
-        pause(500);
+        div();
+        pause(250);
+        // the game is here
         text("\nWelcome to Battle!");
         text("What is your character's name?");
         playerName = userInput.nextLine();
@@ -147,25 +157,49 @@ public class program {
         playerStr = (randomGenerator.nextInt(3) + 1);
         dext("Set playerStr to " + playerStr);
         playerDex = (randomGenerator.nextInt(2) + 1);
+        dext("Set playerDex to " + playerDex);
+        playerSpd = (randomGenerator.nextInt(3) + 1);
+        dext("Set playerSpd to " + playerSpd);
+        playerSpl = 1;
+        dext("Set playerSpl to " + 1);
+        playerMag = (randomGenerator.nextInt(1) +1);
+        dext("Set playerMag to " + playerMag);
         while (createStat == 1) {
             div();
             text("Here are your stats:");
             text("STR: " + playerStr);
-            pause(3000);
-            optionMenu(3, 151, "Continue with these stats", "Reroll stats", "Help me!", "", "", "");
+            text("DEX: " + playerDex);
+            text("SPD: " + playerSpd);
+            text("SPL: " + playerSpl);
+            text("MAG: " + playerMag);
+            pause(1000);
+            optionMenu(3, 172, "Continue with these stats", "Reroll stats", "Help me!", "", "", "");
             playerChoice = userInput.nextInt();
             if (playerChoice == 1) {
                 break;
             } else if (playerChoice == 2) {
+                playerStr = (randomGenerator.nextInt(3) + 1);
+                dext("Set playerStr to " + playerStr);
+                playerDex = (randomGenerator.nextInt(2) + 1);
+                dext("Set playerDex to " + playerDex);
+                playerSpd = (randomGenerator.nextInt(3) + 1);
+                dext("Set playerSpd to " + playerSpd);
+                playerSpl = 1;
+                dext("Set playerSpl to " + 1);
+                playerMag = (randomGenerator.nextInt(1) +1);
+                dext("Set playerMag to " + playerMag);
                 continue;
             } else if (playerChoice == 3) {
                 text("Each stat means the following:");
-                text("STR: The base amount of damage your character deals; the higher end of your damage range.");
+                text("STR: The base amount of damage your character deals; upgrading increases the higher end of your damage range.");
                 text("DEX: Control over your weapons; upgrading increases your lower end of damage range.");
                 text("SPD: How fast you can attack -- a higher value means you can attack enemies before they can attack you.");
                 text("SPL: How often you can use special abilities you may have.");
                 text("MAG: Power of magical abilities that come from magical items.");
+            } else {
+                text("That's not even a choice...");
             }
         }
+        text("Your stats have been set.");
     }
 }

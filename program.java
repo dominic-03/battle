@@ -173,7 +173,7 @@ public class program {
             text("SPL: " + playerSpl);
             text("MAG: " + playerMag);
             pause(1000);
-            optionMenu(3, 172, "Continue with these stats", "Reroll stats", "Help me!", "", "", "");
+            optionMenu(3, 176, "Continue with these stats", "Reroll stats", "Help me!", "", "", "");
             playerChoice = userInput.nextInt();
             if (playerChoice == 1) {
                 break;
